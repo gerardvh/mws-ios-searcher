@@ -95,7 +95,7 @@ enum SLKey {
     }
     
     var url: NSURL {
-        let baseURL = NSURL(string: "https://umichprod.service-now.com/api/now/table/")
+        let baseURL = NSURL(string: "https://umichqa.service-now.com/api/now/table/")
         return NSURL(string: self.tableName, relativeToURL: baseURL)!
     }
     
