@@ -11,16 +11,55 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [AnyObject]()
+    
+    // MARK: View Tags
+    private struct ComputerCell {
+        enum ViewTag: Int {
+            case AssetTag       = 1
+            case PersonAssigned = 2
+            case SerialNumber   = 3
+        }
+        
+        static let ID = "computerMasterCellID"
+    }
+    
+    // MARK: Model
+    var itemList = [Any]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
+    func addDummyData() {
+        let mainBundle = NSBundle.mainBundle()
+        
+        if let sl_test_data = NSArray(contentsOfURL: mainBundle.URLForResource("sl_test_data", withExtension: "plist")!) {
+            Debug.log("Found sl_test_data")
+            for item in sl_test_data {
+                if let computer = item as? NSDictionary {
+                    itemList.append(Computer(dictionary: computer))
+                    Debug.logVerbose("Added computer: \(computer)")
+                }
+            }
+        }
+        if itemList.count > 0 {
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                // Dispatch to the main queue in order to update UI
+                self.tableView.reloadData()
+            }
+        } // end dummy data.
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
+        
+        // Add dummy data:
+        addDummyData()
+        
+        tableView.estimatedRowHeight = 74.0
+        
+        // This allows us to handle iPad setup gracefully
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -37,25 +76,19 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func insertNewObject(sender: AnyObject) {
-        objects.insert(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    }
-
     // MARK: - Segues
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
-            }
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "showDetail" {
+//            if let indexPath = self.tableView.indexPathForSelectedRow {
+//                let object = objects[indexPath.row] as! NSDate
+//                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
+//                controller.detailItem = object
+//                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+//                controller.navigationItem.leftItemsSupplementBackButton = true
+//            }
+//        }
+//    }
 
     // MARK: - Table View
 
@@ -64,28 +97,30 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return itemList.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(ComputerCell.ID, forIndexPath: indexPath)
+        
+        // Use a switch statement with 'case let' to pattern match and get the type of item
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let object = itemList[indexPath.row] as! Computer
+        configureMasterCell(cell, forComputer: object)
         return cell
     }
-
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            objects.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    
+    // MARK: - Custom Setup Methods
+    
+    private func configureMasterCell(cell: UITableViewCell, forComputer computer: Computer) {
+        if let
+            assetTagLabel       = cell.viewWithTag(ComputerCell.ViewTag.AssetTag.rawValue) as? UILabel,
+            personAssignedLabel = cell.viewWithTag(ComputerCell.ViewTag.PersonAssigned.rawValue) as? UILabel,
+            serialNumberLabel   = cell.viewWithTag(ComputerCell.ViewTag.SerialNumber.rawValue) as? UILabel
+        {
+            assetTagLabel.text       = computer.valueForKey(SLKey.Fields.AssetTag) ?? "No Asset Tag"
+            personAssignedLabel.text = computer.valueForKey(SLKey.Fields.AssignedTo.Fullname) ?? "No Assignee"
+            serialNumberLabel.text   = computer.valueForKey(SLKey.Fields.SerialNumber) ?? "No Serial Number"
         }
     }
 

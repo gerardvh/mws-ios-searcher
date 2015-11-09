@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
@@ -110,6 +111,51 @@
                                         <segue key="commit" inheritsFrom="parent" id="fSY-QL-On8"/>
                                         <segue key="preview" inheritsFrom="commit" id="65l-fv-SAc"/>
                                     </segue>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="computerMasterCellID" rowHeight="74" id="A25-qb-McC">
+                                <rect key="frame" x="0.0" y="130" width="600" height="74"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A25-qb-McC" id="9gd-Dd-brq">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="73"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" text="AssetTag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfe-Gc-sZG">
+                                            <rect key="frame" x="8" y="8" width="108" height="33"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="PersonAssigned" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75U-q8-DKn">
+                                            <rect key="frame" x="8" y="44" width="92" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SerialNumber" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1U-B4-0qA">
+                                            <rect key="frame" x="493" y="27" width="99" height="20"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="U1U-B4-0qA" secondAttribute="trailing" id="AHq-2x-Dxo"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="Yfe-Gc-sZG" secondAttribute="leading" id="Ao8-De-G3a"/>
+                                        <constraint firstItem="75U-q8-DKn" firstAttribute="top" secondItem="Yfe-Gc-sZG" secondAttribute="bottom" constant="3" id="Iu2-mO-9YZ"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="75U-q8-DKn" secondAttribute="leading" id="Shh-Qk-8In"/>
+                                        <constraint firstAttribute="topMargin" secondItem="Yfe-Gc-sZG" secondAttribute="top" id="cXE-Jn-kkl"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="75U-q8-DKn" secondAttribute="bottom" id="kcN-Pv-ZDy"/>
+                                        <constraint firstItem="U1U-B4-0qA" firstAttribute="centerY" secondItem="9gd-Dd-brq" secondAttribute="centerY" id="oLQ-Aa-3gw"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <segue destination="vC3-pB-5Vb" kind="showDetail" id="H11-n8-fs1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
