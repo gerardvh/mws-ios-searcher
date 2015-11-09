@@ -28,6 +28,8 @@
 		A8C245521BF0FC9D000421B2 /* Incident.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C245491BF0FC9D000421B2 /* Incident.swift */; };
 		A8C245531BF0FC9D000421B2 /* KnowledgeBaseArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2454A1BF0FC9D000421B2 /* KnowledgeBaseArticle.swift */; };
 		A8C245541BF0FC9D000421B2 /* KnowledgeBaseArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2454A1BF0FC9D000421B2 /* KnowledgeBaseArticle.swift */; };
+		A8FCE4211BF127220044F287 /* ComputerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */; };
+		A8FCE4221BF127220044F287 /* ComputerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,7 @@
 		A8C245481BF0FC9D000421B2 /* SLItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLItemProtocol.swift; sourceTree = "<group>"; };
 		A8C245491BF0FC9D000421B2 /* Incident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Incident.swift; sourceTree = "<group>"; };
 		A8C2454A1BF0FC9D000421B2 /* KnowledgeBaseArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnowledgeBaseArticle.swift; sourceTree = "<group>"; };
+		A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputerDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +145,7 @@
 			children = (
 				A89DA5CF1BED3345006DB990 /* MasterViewController.swift */,
 				A89DA5D11BED3345006DB990 /* DetailViewController.swift */,
+				A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -277,6 +281,7 @@
 				A8C2454B1BF0FC9D000421B2 /* SLKey.swift in Sources */,
 				A8C245411BF0FC55000421B2 /* Debug.swift in Sources */,
 				A89DA5D01BED3345006DB990 /* MasterViewController.swift in Sources */,
+				A8FCE4211BF127220044F287 /* ComputerDetailViewController.swift in Sources */,
 				A89DA5CE1BED3345006DB990 /* AppDelegate.swift in Sources */,
 				A8C2454F1BF0FC9D000421B2 /* SLItemProtocol.swift in Sources */,
 				A8C245511BF0FC9D000421B2 /* Incident.swift in Sources */,
@@ -293,6 +298,7 @@
 				A8C245501BF0FC9D000421B2 /* SLItemProtocol.swift in Sources */,
 				A8C245541BF0FC9D000421B2 /* KnowledgeBaseArticle.swift in Sources */,
 				A8C245421BF0FC55000421B2 /* Debug.swift in Sources */,
+				A8FCE4221BF127220044F287 /* ComputerDetailViewController.swift in Sources */,
 				A8C2454C1BF0FC9D000421B2 /* SLKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
