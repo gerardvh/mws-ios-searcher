@@ -30,6 +30,8 @@
 		A8C245541BF0FC9D000421B2 /* KnowledgeBaseArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2454A1BF0FC9D000421B2 /* KnowledgeBaseArticle.swift */; };
 		A8FCE4211BF127220044F287 /* ComputerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */; };
 		A8FCE4221BF127220044F287 /* ComputerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */; };
+		A8FCE4241BF13BCD0044F287 /* SLRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FCE4231BF13BCD0044F287 /* SLRequestController.swift */; };
+		A8FCE4251BF13BCD0044F287 /* SLRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FCE4231BF13BCD0044F287 /* SLRequestController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,7 @@
 		A8C245491BF0FC9D000421B2 /* Incident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Incident.swift; sourceTree = "<group>"; };
 		A8C2454A1BF0FC9D000421B2 /* KnowledgeBaseArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnowledgeBaseArticle.swift; sourceTree = "<group>"; };
 		A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputerDetailViewController.swift; sourceTree = "<group>"; };
+		A8FCE4231BF13BCD0044F287 /* SLRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLRequestController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				A89DA5CF1BED3345006DB990 /* MasterViewController.swift */,
+				A8FCE4231BF13BCD0044F287 /* SLRequestController.swift */,
 				A89DA5D11BED3345006DB990 /* DetailViewController.swift */,
 				A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */,
 			);
@@ -276,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8C2454D1BF0FC9D000421B2 /* Computer.swift in Sources */,
+				A8FCE4241BF13BCD0044F287 /* SLRequestController.swift in Sources */,
 				A89DA5D21BED3345006DB990 /* DetailViewController.swift in Sources */,
 				A8C245531BF0FC9D000421B2 /* KnowledgeBaseArticle.swift in Sources */,
 				A8C2454B1BF0FC9D000421B2 /* SLKey.swift in Sources */,
@@ -299,6 +304,7 @@
 				A8C245541BF0FC9D000421B2 /* KnowledgeBaseArticle.swift in Sources */,
 				A8C245421BF0FC55000421B2 /* Debug.swift in Sources */,
 				A8FCE4221BF127220044F287 /* ComputerDetailViewController.swift in Sources */,
+				A8FCE4251BF13BCD0044F287 /* SLRequestController.swift in Sources */,
 				A8C2454C1BF0FC9D000421B2 /* SLKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
