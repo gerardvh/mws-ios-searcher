@@ -14,10 +14,10 @@ class MasterViewController: UITableViewController {
     
     // MARK: View Tags
     private struct ComputerCell {
-        enum ViewTag: Int {
-            case AssetTag       = 1
-            case PersonAssigned = 2
-            case SerialNumber   = 3
+        struct ViewTag {
+            static let AssetTag       = 1
+            static let PersonAssigned = 2
+            static let SerialNumber   = 3
         }
         
         static let ID = "computerMasterCellID"
@@ -79,9 +79,10 @@ class MasterViewController: UITableViewController {
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // add other segues by identifier to differentiate what kind of detail to show
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = itemList[indexPath.row] as! Computer
+                let object = itemList[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ComputerDetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -114,9 +115,9 @@ class MasterViewController: UITableViewController {
     
     private func configureMasterCell(cell: UITableViewCell, forComputer computer: Computer) {
         if let
-            assetTagLabel       = cell.viewWithTag(ComputerCell.ViewTag.AssetTag.rawValue) as? UILabel,
-            personAssignedLabel = cell.viewWithTag(ComputerCell.ViewTag.PersonAssigned.rawValue) as? UILabel,
-            serialNumberLabel   = cell.viewWithTag(ComputerCell.ViewTag.SerialNumber.rawValue) as? UILabel
+            assetTagLabel       = cell.viewWithTag(ComputerCell.ViewTag.AssetTag) as? UILabel,
+            personAssignedLabel = cell.viewWithTag(ComputerCell.ViewTag.PersonAssigned) as? UILabel,
+            serialNumberLabel   = cell.viewWithTag(ComputerCell.ViewTag.SerialNumber) as? UILabel
         {
             assetTagLabel.text       = computer.valueForKey(SLKey.Fields.AssetTag) ?? "No Asset Tag"
             personAssignedLabel.text = computer.valueForKey(SLKey.Fields.AssignedTo.Fullname) ?? "No Assignee"
