@@ -34,11 +34,15 @@ struct Computer: SLItem {
         return self.valueForKey(key)
     }
     
-    var sectionsDict: Dictionary<String, [String]> = [
-        "Identifiers": ["Asset Tag", "Serial Number"],
-        "People Involved": ["Assigned To", "Location", "Department"],
-        "Comments": ["Comments"],
-        "Tech Specs": ["Model", "Manufacturer", "MAC Address", "Placeholder"]
+    subscript(key: SLKey.Field) -> String? {
+        return self.valueForKey(key.rawValue)
+    }
+    
+    var sectionsDict: Dictionary<String, [SLKey.Field]> = [
+        "Identifiers": [.AssetTag, .SerialNumber],
+        "People Involved": [.AssignedToFullname, .Location, .Department],
+        "Comments": [.Comments],
+        "Tech Specs": [.ModelID, .Manufacturer, .MacAddress, .Placeholder]
     ]
     
     var sectionsArray: [String] {

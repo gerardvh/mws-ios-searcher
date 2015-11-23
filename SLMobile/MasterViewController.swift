@@ -120,9 +120,9 @@ class MasterViewController: UITableViewController {
             personAssignedLabel = cell.viewWithTag(ComputerCell.ViewTag.PersonAssigned) as? UILabel,
             serialNumberLabel   = cell.viewWithTag(ComputerCell.ViewTag.SerialNumber) as? UILabel
         {
-            assetTagLabel.text       = computer.valueForKey(SLKey.Fields.AssetTag) ?? "No Asset Tag"
-            personAssignedLabel.text = computer.valueForKey(SLKey.Fields.AssignedTo.Fullname) ?? "No Assignee"
-            serialNumberLabel.text   = computer.valueForKey(SLKey.Fields.SerialNumber) ?? "No Serial Number"
+            assetTagLabel.text       = computer[SLKey.Field.AssetTag] ?? "No Asset Tag"
+            personAssignedLabel.text = computer[SLKey.Field.AssignedToFullname] ?? "No Assignee"
+            serialNumberLabel.text   = computer[SLKey.Field.SerialNumber] ?? "No Serial Number"
         }
     }
 

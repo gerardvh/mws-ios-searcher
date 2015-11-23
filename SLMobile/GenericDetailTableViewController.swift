@@ -50,19 +50,20 @@ class GenericDetailTableViewController: UITableViewController, DetailViewControl
         
         guard cellID != commentsCellID else {
             let title = cell.viewWithTag(1) as! UILabel
-            title.text = detailItem["Comments"]
+            assignOptionalValueForLabel(title, value: detailItem[SLKey.Field.Comments])
             return cell
         }
         
         // Configure cells other than the comments cell
         if let
             section: String = detailItem.sectionsArray[indexPath.section],
-            rowArray: [String] = detailItem.sectionsDict[section] {
+            rowArray: [SLKey.Field] = detailItem.sectionsDict[section] {
                 let title = cell.viewWithTag(1) as! UILabel
                 let subtitle = cell.viewWithTag(2) as! UILabel
-                // FIXME: This needs to be the API name, not the display name
-                title.text = detailItem[rowArray[indexPath.row]]
-                subtitle.text = rowArray[indexPath.row]
+                let fieldKey: SLKey.Field = rowArray[indexPath.row]
+
+                assignOptionalValueForLabel(title, value: detailItem[fieldKey])
+                assignOptionalValueForLabel(subtitle, value: fieldKey.displayName)
         }
 
         return cell

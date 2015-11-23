@@ -16,22 +16,24 @@ protocol SLItem {
     
     func valueForKey(key: String) -> String?
     
-    subscript(_: String) -> String? { get }
+    subscript(key: String) -> String? { get }
     
-    var sectionsDict: Dictionary<String,[String]> { get }
+    subscript(key: SLKey.Field) -> String? { get }
+    
+    var sectionsDict: Dictionary<String,[SLKey.Field]> { get }
     
     var sectionsArray: [String] { get }
 }
 
 extension SLItem {
     // Default implementation to be overwritten
-    // TODO: USE SLKEYS and then how to have Display values and searchable values?
-    var sectionsDict: Dictionary<String, [String]> { return [
-        "Identifiers": ["Asset Tag", "Serial Number"],
-        "People Involved": ["Assigned To", "Location", "Department"],
-        "Comments": ["Comments"],
-        "Tech Specs": ["Model", "Manufacturer", "MAC Address", "Placeholder"]
+    var sectionsDict: Dictionary<String, [SLKey.Field]> { return [
+        "Identifiers": [.AssetTag, .SerialNumber],
+        "People Involved": [.AssignedToFullname, .Location, .Department],
+        "Comments": [.Comments],
+        "Tech Specs": [.ModelID, .Manufacturer, .MacAddress, .Placeholder]
         ] }
+    
     var sectionsArray: [String] {
         return ["Identifiers", "People Involved", "Comments", "Tech Specs"]
     }

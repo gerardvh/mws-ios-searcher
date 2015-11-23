@@ -43,16 +43,16 @@ class ComputerDetailViewController: UITableViewController {
     // MARK: - Custom setup methods
     
     func configureView() {
-        assignOptionalValueForLabel(assetTagLabel, value: detailComputer[SLKey.Fields.AssetTag])
-        assignOptionalValueForLabel(serialNumberLabel, value: detailComputer[SLKey.Fields.SerialNumber])
-        assignOptionalValueForLabel(assignedToLabel, value: detailComputer[SLKey.Fields.AssignedTo.Fullname])
-        assignOptionalValueForLabel(locationLabel, value: detailComputer[SLKey.Fields.Location])
-        assignOptionalValueForLabel(ownedByDepartmentLabel, value: detailComputer[SLKey.Fields.Department])
-        assignOptionalValueForLabel(commentsLabel, value: detailComputer[SLKey.Fields.Comments])
-        assignOptionalValueForLabel(modelLabel, value: detailComputer[SLKey.Fields.ModelID])
-        assignOptionalValueForLabel(macAddressLabel, value: detailComputer[SLKey.Fields.MacAddress])
-        assignOptionalValueForLabel(manufacturerLabel, value: detailComputer[SLKey.Fields.Manufacturer])
-        assignOptionalValueForLabel(placeholderLabel, value: detailComputer[SLKey.Fields.InstallStatus])
+        assignOptionalValueForLabel(assetTagLabel, value: detailComputer[SLKey.Field.AssetTag])
+        assignOptionalValueForLabel(serialNumberLabel, value: detailComputer[.SerialNumber])
+        assignOptionalValueForLabel(assignedToLabel, value: detailComputer[.AssignedToFullname])
+        assignOptionalValueForLabel(locationLabel, value: detailComputer[.Location])
+        assignOptionalValueForLabel(ownedByDepartmentLabel, value: detailComputer[.Department])
+        assignOptionalValueForLabel(commentsLabel, value: detailComputer[.Comments])
+        assignOptionalValueForLabel(modelLabel, value: detailComputer[.ModelID])
+        assignOptionalValueForLabel(macAddressLabel, value: detailComputer[.MacAddress])
+        assignOptionalValueForLabel(manufacturerLabel, value: detailComputer[.Manufacturer])
+        assignOptionalValueForLabel(placeholderLabel, value: detailComputer[.InstallStatus])
     }
     
     /**

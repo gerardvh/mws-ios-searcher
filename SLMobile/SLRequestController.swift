@@ -25,19 +25,19 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
     
     private func defaultQueryItems(searchTerm: String) -> [NSURLQueryItem] {
         let queryDict = [
-            SLKey.Fields.SerialNumber: searchTerm,
-            SLKey.Fields.AssetTag: searchTerm,
-            SLKey.Fields.AssignedTo.Fullname: searchTerm,
-            SLKey.Fields.AssignedTo.Username: searchTerm
+            SLKey.Field.SerialNumber: searchTerm,
+            SLKey.Field.AssetTag: searchTerm,
+            SLKey.Field.AssignedToFullname: searchTerm,
+            SLKey.Field.AssignedToUsername: searchTerm
         ]
         
-        let slQueryString = queryDict.asSLQueryString(separator: "^OR")
+        let slQueryString = queryDict.asSLQueryString(separator: .Or, queryModifier: .FuzzyMatch)
         
         let query = [
-            SLKey.SysParms.Query: slQueryString,
-            SLKey.SysParms.Limit: "100",
-            SLKey.SysParms.DisplayValue: "true",
-            SLKey.SysParms.ExcludeReference: "true"
+            SLKey.SysParm.Query: slQueryString,
+            SLKey.SysParm.Limit: "100",
+            SLKey.SysParm.DisplayValue: "true",
+            SLKey.SysParm.ExcludeReference: "true"
         ]
         return query.asQueryItems
     }
@@ -107,7 +107,7 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
     }
     
     private func configureRequest(searchTerm: String, queryItems: [NSURLQueryItem]) -> NSURLRequest {
-        let urlComponents = SLKey.ConfigurationItem.urlComponents
+        let urlComponents = SLKey.Table.ConfigurationItem.urlComponents
         urlComponents.queryItems = queryItems
         return NSURLRequest(URL: urlComponents.URL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 10.0)
     }
@@ -117,16 +117,16 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
 // MARK: - Private Dictionary extension
 
 private extension Dictionary {
-    func asSLQueryString(separator separator: String = SLKey.QuerySeparators.Or) -> String {
+    func asSLQueryString(separator separator: SLKey.QuerySeparator = .Or, queryModifier: SLKey.QueryModifier = .FuzzyMatch) -> String {
         var queryValues = [String]()
         
         for (key, value) in self {
             // Make sure we can coerce the types to String values
             guard let key = key as? String, value = value as? String
                 else { continue }
-            queryValues.append("\(key)\(SLKey.QueryModifiers.FuzzyMatch)\(value)")
+            queryValues.append("\(key)\(queryModifier.rawValue)\(value)")
         }
-        let queryString = queryValues.joinWithSeparator(separator)
+        let queryString = queryValues.joinWithSeparator(separator.rawValue)
         
         return queryString
     }

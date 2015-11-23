@@ -15,3 +15,9 @@ protocol DetailViewController {
     func configureView()
 }
 
+extension DetailViewController {
+    func assignOptionalValueForLabel(label: UILabel, value: String?) {
+        label.text = value ?? "None"
+    }
+
+}
