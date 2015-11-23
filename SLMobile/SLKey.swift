@@ -79,9 +79,10 @@ struct SLKey {
     }
     
     struct API {
-        static let SLUser = "***REMOVED***"
-        static let SLPassword = "***REMOVED***"
-        static let SLBase64Auth = "c29hcC5uaXQ6eSFUIXBYczFQZVVA"
+        private static let SLUser = "***REMOVED***"
+        private static let SLPassword = "***REMOVED***"
+        private static let credentialData = "\(SLUser):\(SLPassword)".dataUsingEncoding(NSUTF8StringEncoding)!
+        private static let SLBase64Auth = credentialData.base64EncodedStringWithOptions([])
         static let authString = "Basic \(SLBase64Auth)"
     }
     
