@@ -14,7 +14,9 @@ protocol SLItem {
     
     init(dictionary: NSDictionary)
     
-    func valueForKey(key: String) -> String?
+    func valueForKey(key: String) -> String? // Must be implemented by conforming types
+    
+    func valueForKey(key: SLKey.Field) -> String?
     
     subscript(key: String) -> String? { get }
     
@@ -36,5 +38,17 @@ extension SLItem {
     
     var sectionsArray: [String] {
         return ["Identifiers", "People Involved", "Comments", "Tech Specs"]
+    }
+    
+    func valueForKey(key: SLKey.Field) -> String? {
+        return self.valueForKey(key.rawValue)
+    }
+    
+    subscript(key: String) -> String? {
+        return self.valueForKey(key)
+    }
+    
+    subscript(key: SLKey.Field) -> String? {
+        return self.valueForKey(key.rawValue)
     }
 }

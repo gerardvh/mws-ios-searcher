@@ -30,14 +30,6 @@ struct Computer: SLItem {
         return value
     }
     
-    subscript(key: String) -> String? {
-        return self.valueForKey(key)
-    }
-    
-    subscript(key: SLKey.Field) -> String? {
-        return self.valueForKey(key.rawValue)
-    }
-    
     var sectionsDict: Dictionary<String, [SLKey.Field]> = [
         "Identifiers": [.AssetTag, .SerialNumber],
         "People Involved": [.AssignedToFullname, .Location, .Department],
