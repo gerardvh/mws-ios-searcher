@@ -84,12 +84,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-SLMobile/Nimble.framework"
-  install_framework "Pods-SLMobile/Quick.framework"
   install_framework "Pods-SLMobile/Alamofire.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-SLMobile/Nimble.framework"
-  install_framework "Pods-SLMobile/Quick.framework"
   install_framework "Pods-SLMobile/Alamofire.framework"
 fi
