@@ -60,6 +60,7 @@ class GenericDetailTableViewController: UITableViewController, DetailViewControl
             rowArray: [String] = detailItem.sectionsDict[section] {
                 let title = cell.viewWithTag(1) as! UILabel
                 let subtitle = cell.viewWithTag(2) as! UILabel
+                // FIXME: This needs to be the API name, not the display name
                 title.text = detailItem[rowArray[indexPath.row]]
                 subtitle.text = rowArray[indexPath.row]
         }

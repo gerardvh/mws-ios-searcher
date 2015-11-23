@@ -65,7 +65,6 @@ enum SLKey {
         static let Query                  = "sysparm_query"
     }
     
-    
     struct QueryModifiers {
         static let ExactMatch = "="
         static let FuzzyMatch = "LIKE"
@@ -101,5 +100,14 @@ enum SLKey {
     
     var urlComponents: NSURLComponents {
         return NSURLComponents(URL: self.url, resolvingAgainstBaseURL: true)!
+    }
+}
+
+extension String {
+    var displayName: String {
+        // Remove '_' and '.' and return a capitalized version
+        let spacedString = self.stringByReplacingOccurrencesOfString("_", withString: " ")
+        let colonString = spacedString.stringByReplacingOccurrencesOfString(".", withString: ": ")
+        return colonString.capitalizedString
     }
 }
