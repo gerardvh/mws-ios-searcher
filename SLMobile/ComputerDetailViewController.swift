@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComputerDetailViewController: UITableViewController, DetailViewController {
+class ComputerDetailViewController: UITableViewController {
     
     // MARK: - IB Outlets
     @IBOutlet weak var assetTagLabel: UILabel!
@@ -23,7 +23,7 @@ class ComputerDetailViewController: UITableViewController, DetailViewController 
     @IBOutlet weak var placeholderLabel: UILabel!
 
     // MARK: - Model
-    var detailItem: Any?
+    var detailItem: SLItem!
     
     var detailComputer: Computer {
         guard let comp = detailItem as? Computer

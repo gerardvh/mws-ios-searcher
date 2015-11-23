@@ -33,4 +33,15 @@ struct Computer: SLItem {
     subscript(key: String) -> String? {
         return self.valueForKey(key)
     }
+    
+    var sectionsDict: Dictionary<String, [String]> = [
+        "Identifiers": ["Asset Tag", "Serial Number"],
+        "People Involved": ["Assigned To", "Location", "Department"],
+        "Comments": ["Comments"],
+        "Tech Specs": ["Model", "Manufacturer", "MAC Address", "Placeholder"]
+    ]
+    
+    var sectionsArray: [String] {
+        return ["Identifiers", "People Involved", "Comments", "Tech Specs"]
+    }
 }

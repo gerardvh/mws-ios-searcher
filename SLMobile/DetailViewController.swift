@@ -10,7 +10,7 @@ import UIKit
 
 protocol DetailViewController {
 
-    var detailItem: Any? { get set }
+    var detailItem: SLItem! { get set }
 
     func configureView()
 }

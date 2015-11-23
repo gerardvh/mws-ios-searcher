@@ -23,4 +23,5 @@ struct Incident: SLItem {
     subscript(key: String) -> String? {
         return self.valueForKey(key)
     }
+    
 }

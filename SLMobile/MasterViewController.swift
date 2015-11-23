@@ -20,11 +20,12 @@ class MasterViewController: UITableViewController {
             static let SerialNumber   = 3
         }
         
-        static let ID = "computerMasterCellID"
+//        static let ID = "computerMasterCellID"
+        static let ID = "computerStackViewCellID"
     }
     
     // MARK: Model
-    var itemList = [Any]() {
+    var itemList = [SLItem]() {
         didSet {
             self.tableView.reloadData()
         }
@@ -80,10 +81,10 @@ class MasterViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // add other segues by identifier to differentiate what kind of detail to show
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "showGenericDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let object = itemList[indexPath.row]
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ComputerDetailViewController
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! GenericDetailTableViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
