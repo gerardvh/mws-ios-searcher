@@ -7,9 +7,22 @@ def import_test_pods
 
 end
 
+def additional_pods
+    
+    pod 'Alamofire'
+    
+end
+
 target "SLMobileTests" do
   platform :ios, '9.0'
 
   import_test_pods
 end
 
+target "SLMobile" do
+    platform :ios, '9.0'
+    
+    import_test_pods
+    
+    additional_pods
+end

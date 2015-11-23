@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Nimble.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SLMobile.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,7 +32,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>11D4059B51AC557CFBCB3F27779DD682</key>
+		<key>432ECC54282C84882B482CCB4CF227FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>472E3CEAA2F3B076EFAFCD9F8E1A2CEE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -33,6 +48,11 @@
 			<true/>
 		</dict>
 		<key>C5DB5104FED3C10F78978AFC810982B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E80ADAB973543C1D6D3FBA8C0636C83A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
