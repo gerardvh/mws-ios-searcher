@@ -18,7 +18,7 @@ struct AFRequestController {
     private let defaultMaxResults: Int = 25
     private let defaultQueryModifier: SLKey.QueryModifier = .FuzzyMatch
     private let defaultQuerySeparator: SLKey.QuerySeparator = .Or
-    private let authHeader = ["Authorization": SLKey.API.authString]
+    private let authHeader = ["Authorization": SLKey.API.authString, "Accept": "application/json"]
     
     
     func searchFor(searchTerm: String, completionHandler handler: ([SLItem]) -> Void) {
@@ -27,23 +27,38 @@ struct AFRequestController {
     }
     
     private func completeSearch(searchTerm: String, table: SLKey.Table, fieldsToSearch fields: [SLKey.Field], maxResults: Int, queryModifier modifier: SLKey.QueryModifier, querySeparator separator: SLKey.QuerySeparator, completionHandler handler: ([SLItem]) -> Void) {
-        // Handle our generic search
-        var params = [String:AnyObject]()
+        
+        let queryString = makeSLQueryString(forFields: fields, withSearchTerm: searchTerm)
+        
+        let params: [String:AnyObject] = [
+            SLKey.SysParm.Query.rawValue: queryString,
+            SLKey.SysParm.Limit.rawValue: maxResults,
+            SLKey.SysParm.DisplayValue.rawValue: "true",
+            SLKey.SysParm.ExcludeReference.rawValue: "true"
+        ]
+        
         Alamofire.request(.GET, table.url, parameters: params, headers: authHeader)
             .responseJSON { response in
                 switch response.result {
                 case .Success(let value):
-                    print("Success!")
+                    Debug.log("Successful Alamofire request: \(response.request), with value: \(value)")
+                    // Do something with the response here
+                    
                 case .Failure(let error):
                     Debug.log("Failed in Alamofire request: \(response.request), with error: \(error)")
                 }
         }
     }
     
-    private func makeSLQueryString(fromDictionary dict: Dictionary<SLKey.Field, String>, withSeparator sep: SLKey.QuerySeparator = .Or, withQueryModifier mod: SLKey.QueryModifier = .FuzzyMatch) -> String {
+    private func makeSLQueryString(forFields fields: [SLKey.Field], withSearchTerm searchTerm: String, withSeparator sep: SLKey.QuerySeparator = .Or, withQueryModifier mod: SLKey.QueryModifier = .FuzzyMatch) -> String {
         var queryValues = [String]()
-        
-        for (key, value) in dict {
+        // Create our initial query dictionary, searching for `searchTerm LIKE eachField`
+        var queryDict: Dictionary<SLKey.Field, String> = [:]
+        for field in fields {
+            queryDict[field] = searchTerm
+        }
+        // Save it into queryValues with the format appropriate for SL queries
+        for (key, value) in queryDict {
             queryValues.append("\(key.rawValue)\(mod.rawValue)\(value)")
         }
         return queryValues.joinWithSeparator(sep.rawValue)

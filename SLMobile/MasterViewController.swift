@@ -65,6 +65,14 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        // TESTING REQUESTS:
+        let af = AFRequestController()
+        af.searchFor("6553") { (slItems) -> Void in
+            for item in slItems {
+                Debug.log("\(item)")
+            }
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
