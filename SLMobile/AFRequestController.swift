@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 struct AFRequestController {
     
@@ -41,9 +42,12 @@ struct AFRequestController {
             .responseJSON { response in
                 switch response.result {
                 case .Success(let value):
-                    Debug.log("Successful Alamofire request: \(response.request), with value: \(value)")
+//                    Debug.log("Successful Alamofire request: \(response.request), with value: \(value)")
                     // Do something with the response here
-                    
+                    let json = JSON(value)
+                    for item in json["result"] {
+                        Debug.log("\(item.1)")
+                    }
                 case .Failure(let error):
                     Debug.log("Failed in Alamofire request: \(response.request), with error: \(error)")
                 }
