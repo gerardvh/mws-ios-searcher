@@ -36,6 +36,9 @@
 		A82EFF3F1C0F836F00F822F4 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EFF261C0F836F00F822F4 /* Bool.swift */; };
 		A82EFF401C0F836F00F822F4 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EFF261C0F836F00F822F4 /* Bool.swift */; };
 		A82EFF431C10A6B700F822F4 /* SwiftyJSON+SLKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EFF421C10A6B700F822F4 /* SwiftyJSON+SLKeyExtension.swift */; };
+		A82EFF451C10B69100F822F4 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EFF441C10B69100F822F4 /* ResultsTableViewController.swift */; };
+		A82EFF471C10B70F00F822F4 /* ComputerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EFF461C10B70F00F822F4 /* ComputerCell.swift */; };
+		A82EFF491C10BD0900F822F4 /* ComputerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A82EFF481C10BD0900F822F4 /* ComputerCell.xib */; };
 		A89DA5CE1BED3345006DB990 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89DA5CD1BED3345006DB990 /* AppDelegate.swift */; };
 		A89DA5D01BED3345006DB990 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89DA5CF1BED3345006DB990 /* MasterViewController.swift */; };
 		A89DA5D21BED3345006DB990 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89DA5D11BED3345006DB990 /* DetailViewController.swift */; };
@@ -96,6 +99,9 @@
 		A82EFF251C0F836F00F822F4 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		A82EFF261C0F836F00F822F4 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
 		A82EFF421C10A6B700F822F4 /* SwiftyJSON+SLKeyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftyJSON+SLKeyExtension.swift"; sourceTree = "<group>"; };
+		A82EFF441C10B69100F822F4 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
+		A82EFF461C10B70F00F822F4 /* ComputerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputerCell.swift; sourceTree = "<group>"; };
+		A82EFF481C10BD0900F822F4 /* ComputerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComputerCell.xib; sourceTree = "<group>"; };
 		A89DA5CA1BED3345006DB990 /* SLMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89DA5CD1BED3345006DB990 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A89DA5CF1BED3345006DB990 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				A89DA5CF1BED3345006DB990 /* MasterViewController.swift */,
+				A82EFF441C10B69100F822F4 /* ResultsTableViewController.swift */,
 				A82EFF421C10A6B700F822F4 /* SwiftyJSON+SLKeyExtension.swift */,
 				A8FCE4231BF13BCD0044F287 /* SLRequestController.swift */,
 				A89EE7191C0375D6002BF102 /* AFRequestController.swift */,
@@ -263,6 +270,8 @@
 		A8C245441BF0FC7B000421B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A82EFF461C10B70F00F822F4 /* ComputerCell.swift */,
+				A82EFF481C10BD0900F822F4 /* ComputerCell.xib */,
 				A89DA5D31BED3345006DB990 /* Main.storyboard */,
 				A89DA5D81BED3345006DB990 /* LaunchScreen.storyboard */,
 			);
@@ -383,6 +392,7 @@
 				A89DA5D71BED3345006DB990 /* Assets.xcassets in Resources */,
 				A89DA5D51BED3345006DB990 /* Main.storyboard in Resources */,
 				A8C2453D1BF0FBF8000421B2 /* sl_test_data.plist in Resources */,
+				A82EFF491C10BD0900F822F4 /* ComputerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +512,8 @@
 				A8FCE4241BF13BCD0044F287 /* SLRequestController.swift in Sources */,
 				A82EFF271C0F836F00F822F4 /* Sequence.swift in Sources */,
 				A82EFF351C0F836F00F822F4 /* Int.swift in Sources */,
+				A82EFF451C10B69100F822F4 /* ResultsTableViewController.swift in Sources */,
+				A82EFF471C10B70F00F822F4 /* ComputerCell.swift in Sources */,
 				A89DA5D21BED3345006DB990 /* DetailViewController.swift in Sources */,
 				A8C245531BF0FC9D000421B2 /* KnowledgeBaseArticle.swift in Sources */,
 				A82EFF2F1C0F836F00F822F4 /* Dictionary.swift in Sources */,

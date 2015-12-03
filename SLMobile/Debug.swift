@@ -11,7 +11,7 @@ import Foundation
 struct Debug {
     
     static let switchOn = true
-    static var verbose = false
+    static var verbose = true
     
     static func log(logString: String) {
         if (Debug.switchOn) { NSLog(logString) }

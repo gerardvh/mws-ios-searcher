@@ -122,9 +122,9 @@ private extension Dictionary {
         
         for (key, value) in self {
             // Make sure we can coerce the types to String values
-            guard let key = key as? String, value = value as? String
+            guard let key = key as? SLKey.Field, value = value as? String
                 else { continue }
-            queryValues.append("\(key)\(queryModifier.rawValue)\(value)")
+            queryValues.append("\(key.rawValue)\(queryModifier.rawValue)\(value)")
         }
         let queryString = queryValues.joinWithSeparator(separator.rawValue)
         
@@ -135,9 +135,9 @@ private extension Dictionary {
         var queryItems = [NSURLQueryItem]()
         for (key, value) in self {
             // Make sure we can coerce the types to String values
-            guard let key = key as? String, value = value as? String
+            guard let key = key as? SLKey.Field, value = value as? String
                 else { continue }
-            queryItems.append(NSURLQueryItem(name: key, value: value))
+            queryItems.append(NSURLQueryItem(name: key.rawValue, value: value))
         }
         return queryItems
     }

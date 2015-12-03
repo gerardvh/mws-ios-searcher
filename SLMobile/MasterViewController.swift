@@ -9,21 +9,13 @@
 import UIKit
 import SwiftyJSON
 
-class MasterViewController: UITableViewController {
-
+class MasterViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+    
+    // MARK: Properties
     var detailViewController: DetailViewController? = nil
     
-    // MARK: View Tags
-    private struct ComputerCell {
-        struct ViewTag {
-            static let AssetTag       = 1
-            static let PersonAssigned = 2
-            static let SerialNumber   = 3
-        }
-        
-//        static let ID = "computerMasterCellID"
-        static let ID = "computerStackViewCellID"
-    }
+    var searchController: UISearchController!
+    var requestController = AFRequestController()
     
     // MARK: Model
     var itemList = [SLItem]() {
@@ -32,6 +24,7 @@ class MasterViewController: UITableViewController {
         }
     }
 
+    // MARK: Dummy Data
     func addDummyData() {
         let mainBundle = NSBundle.mainBundle()
         
@@ -57,12 +50,13 @@ class MasterViewController: UITableViewController {
         }
     }
 
+    // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         // Add dummy data:
-        addDummyData()
+//        addDummyData()
         
         tableView.estimatedRowHeight = 74.0
         
@@ -72,13 +66,16 @@ class MasterViewController: UITableViewController {
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        // TESTING REQUESTS:
-//        let af = AFRequestController()
-//        af.searchFor("6553") { (slItems) -> Void in
-//            for item in slItems {
-//                Debug.log("\(item)")
-//            }
-//        }
+        searchController = UISearchController(searchResultsController: ResultsTableViewController())
+        searchController.searchResultsUpdater = self
+        
+        tableView.tableHeaderView = searchController.searchBar
+        
+        searchController.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        
+        definesPresentationContext = true
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -125,6 +122,37 @@ class MasterViewController: UITableViewController {
         configureMasterCell(cell, forComputer: object)
         return cell
     }
+    
+    // MARK: - UISearchResultsUpdating
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        Debug.logVerbose("Text changed: \(searchController.searchBar.text!)")
+        // TODO: Fill this in with request code
+        let resultsController = searchController.searchResultsController as! ResultsTableViewController
+        
+        // Only start searching after 3 or more characters
+        guard (searchController.searchBar.text?.characters.count > 2)
+            else { return }
+        
+        if let searchTerm = searchController.searchBar.text {
+            requestController.searchFor(searchTerm, completionHandler: { (jsonArray) -> Void in
+                var newResults = [SLItem]()
+                for json in jsonArray {
+                    newResults.append(Computer(json: json))
+                }
+                resultsController.filteredResults = newResults
+                resultsController.updateTableview()
+            })
+        }
+    }
+    
+    // MARK: - UISearchBarDelegate
+    
+//    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+//        Debug.logVerbose("Text changed: \(searchText)")
+//        
+//        
+//    }
     
     // MARK: - Custom Setup Methods
     
