@@ -16,6 +16,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     
     var searchController: UISearchController!
     var requestController = AFRequestController()
+    var resultsController: ResultsTableViewController!
     
     // MARK: Model
     var itemList = [SLItem]() {
@@ -65,8 +66,10 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        resultsController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ResultsTableViewController") as! ResultsTableViewController
+        resultsController.tableView.delegate = self
         
-        searchController = UISearchController(searchResultsController: ResultsTableViewController())
+        searchController = UISearchController(searchResultsController: resultsController)
         searchController.searchResultsUpdater = self
         
         tableView.tableHeaderView = searchController.searchBar
@@ -100,6 +103,9 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        }
+        if segue.identifier == "showDetailFromSearch" {
+            Debug.log("Got to segue 'showDetailFromSearch'")
         }
     }
 
