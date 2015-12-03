@@ -13,6 +13,8 @@ protocol SLItem {
 //    static func initWithDictionary(dict: NSDictionary) -> SLItem
     
     init(dictionary: NSDictionary)
+  
+//    static func initWithDictionary(dict: NSDictionary) -> SLItem
     
     func valueForKey(key: String) -> String? // Must be implemented by conforming types
     

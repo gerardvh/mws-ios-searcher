@@ -8,6 +8,7 @@
 
 
 import Foundation
+import SwiftyJSON
 
 
 struct Computer: SLItem {
@@ -21,6 +22,20 @@ struct Computer: SLItem {
     init() {
         // Convenience init
         self.init(dictionary: NSDictionary())
+    }
+    
+    init?(json: JSON) {
+        if let jsonDict = json.dictionary {
+            let dict = NSDictionary()
+            
+            for (key, subJson): (String, JSON) in jsonDict {
+                dict.setValue(subJson.string, forKey: key)
+            }
+            
+            self.init(dictionary: dict)
+        } else {
+            return nil
+        }
     }
     
     func valueForKey(key: String) -> String? {

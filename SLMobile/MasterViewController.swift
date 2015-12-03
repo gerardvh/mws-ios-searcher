@@ -69,9 +69,9 @@ class MasterViewController: UITableViewController {
         // TESTING REQUESTS:
         let af = AFRequestController()
         af.searchFor("6553") { (slItems) -> Void in
-//            for item in slItems {
-//                Debug.log("\(item)")
-//            }
+            for item in slItems {
+                Debug.log("\(item)")
+            }
         }
     }
 

@@ -22,12 +22,12 @@ struct AFRequestController {
     private let authHeader = ["Authorization": SLKey.API.authString, "Accept": "application/json"]
     
     
-    func searchFor(searchTerm: String, completionHandler handler: ([SLItem]) -> Void) {
+    func searchFor(searchTerm: String, completionHandler handler: ([JSON]) -> Void) {
         // Pass the search to `completeSearch(...)` with defaults
         completeSearch(searchTerm, table: defaultTable, fieldsToSearch: defaultFields, maxResults: defaultMaxResults, queryModifier: defaultQueryModifier, querySeparator: defaultQuerySeparator, completionHandler: handler)
     }
     
-    private func completeSearch(searchTerm: String, table: SLKey.Table, fieldsToSearch fields: [SLKey.Field], maxResults: Int, queryModifier modifier: SLKey.QueryModifier, querySeparator separator: SLKey.QuerySeparator, completionHandler handler: ([SLItem]) -> Void) {
+    private func completeSearch(searchTerm: String, table: SLKey.Table, fieldsToSearch fields: [SLKey.Field], maxResults: Int, queryModifier modifier: SLKey.QueryModifier, querySeparator separator: SLKey.QuerySeparator, completionHandler handler: ([JSON]) -> Void) {
         
         let queryString = makeSLQueryString(forFields: fields, withSearchTerm: searchTerm)
         
@@ -45,8 +45,10 @@ struct AFRequestController {
 //                    Debug.log("Successful Alamofire request: \(response.request), with value: \(value)")
                     // Do something with the response here
                     let json = JSON(value)
-                    for item in json["result"] {
-                        Debug.log("\(item.1)")
+                    if let items = json["result"].array {
+                        handler(items)
+                    } else {
+                        handler(json["error"].arrayValue)
                     }
                 case .Failure(let error):
                     Debug.log("Failed in Alamofire request: \(response.request), with error: \(error)")
