@@ -35,6 +35,7 @@
 		A82EFF3E1C0F836F00F822F4 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EFF251C0F836F00F822F4 /* NSDate.swift */; };
 		A82EFF3F1C0F836F00F822F4 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EFF261C0F836F00F822F4 /* Bool.swift */; };
 		A82EFF401C0F836F00F822F4 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EFF261C0F836F00F822F4 /* Bool.swift */; };
+		A82EFF431C10A6B700F822F4 /* SwiftyJSON+SLKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EFF421C10A6B700F822F4 /* SwiftyJSON+SLKeyExtension.swift */; };
 		A89DA5CE1BED3345006DB990 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89DA5CD1BED3345006DB990 /* AppDelegate.swift */; };
 		A89DA5D01BED3345006DB990 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89DA5CF1BED3345006DB990 /* MasterViewController.swift */; };
 		A89DA5D21BED3345006DB990 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89DA5D11BED3345006DB990 /* DetailViewController.swift */; };
@@ -94,6 +95,7 @@
 		A82EFF241C0F836F00F822F4 /* NSArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSArray.swift; sourceTree = "<group>"; };
 		A82EFF251C0F836F00F822F4 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		A82EFF261C0F836F00F822F4 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
+		A82EFF421C10A6B700F822F4 /* SwiftyJSON+SLKeyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftyJSON+SLKeyExtension.swift"; sourceTree = "<group>"; };
 		A89DA5CA1BED3345006DB990 /* SLMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89DA5CD1BED3345006DB990 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A89DA5CF1BED3345006DB990 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				A89DA5CF1BED3345006DB990 /* MasterViewController.swift */,
+				A82EFF421C10A6B700F822F4 /* SwiftyJSON+SLKeyExtension.swift */,
 				A8FCE4231BF13BCD0044F287 /* SLRequestController.swift */,
 				A89EE7191C0375D6002BF102 /* AFRequestController.swift */,
 				A8E41FE21BF685E6009E0295 /* Detail */,
@@ -492,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A82EFF3B1C0F836F00F822F4 /* NSArray.swift in Sources */,
+				A82EFF431C10A6B700F822F4 /* SwiftyJSON+SLKeyExtension.swift in Sources */,
 				A8C2454D1BF0FC9D000421B2 /* Computer.swift in Sources */,
 				A82EFF371C0F836F00F822F4 /* Range.swift in Sources */,
 				A82EFF391C0F836F00F822F4 /* String.swift in Sources */,

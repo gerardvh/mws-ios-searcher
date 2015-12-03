@@ -12,38 +12,17 @@ import SwiftyJSON
 
 
 struct Computer: SLItem {
+    //MARK: - Properties
+    private let backEndStore: JSON
     
-    private var backEndStore: NSDictionary
-    
-    init(dictionary: NSDictionary) {
-        backEndStore = dictionary
-    }
-    
-    init() {
-        // Convenience init
-        self.init(dictionary: NSDictionary())
-    }
-    
-    init?(json: JSON) {
-        if let jsonDict = json.dictionary {
-            let dict = NSDictionary()
-            
-            for (key, subJson): (String, JSON) in jsonDict {
-                dict.setValue(subJson.string, forKey: key)
-            }
-            
-            self.init(dictionary: dict)
-        } else {
-            return nil
-        }
-    }
-    
-    func valueForKey(key: String) -> String? {
-        let value = backEndStore.valueForKey(key) as? String
-        guard value != ""
-            else { return nil } // Don't want empty strings, want to replace with an if let when called.
-        return value
-    }
+    var serialNumber: String?
+    var assetTag: String?
+    var assignedTo: String?
+    var location: String?
+    var department: String?
+    var model: String?
+    var manufacturer: String?
+    var macAddress: String?
     
     var sectionsDict: Dictionary<String, [SLKey.Field]> = [
         "Identifiers": [.AssetTag, .SerialNumber],
@@ -54,5 +33,27 @@ struct Computer: SLItem {
     
     var sectionsArray: [String] {
         return ["Identifiers", "People Involved", "Comments", "Tech Specs"]
+    }
+    
+    //MARK: - Initializers
+    init() {
+        // Convenience init
+        self.init(json: [:])
+    }
+    
+    init(json: JSON) {
+        backEndStore = json
+        serialNumber = backEndStore[.SerialNumber].string
+        assetTag     = backEndStore[.AssetTag].string
+        assignedTo   = backEndStore[.AssignedToFullname].string
+        location     = backEndStore[.Location].string
+        department   = backEndStore[.Department].string
+        model        = backEndStore[.ModelID].string
+        manufacturer = backEndStore[.Manufacturer].string
+        macAddress   = backEndStore[.MacAddress].string
+    }
+    
+    func valueForKey(key: String) -> String? {
+        return backEndStore[key].string
     }
 }

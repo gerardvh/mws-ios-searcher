@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class MasterViewController: UITableViewController {
 
@@ -27,7 +28,7 @@ class MasterViewController: UITableViewController {
     // MARK: Model
     var itemList = [SLItem]() {
         didSet {
-            self.tableView.reloadData()
+            updateTableview()
         }
     }
 
@@ -38,17 +39,22 @@ class MasterViewController: UITableViewController {
             Debug.log("Found sl_test_data")
             for item in sl_test_data {
                 if let computer = item as? NSDictionary {
-                    itemList.append(Computer(dictionary: computer))
-                    Debug.logVerbose("Added computer: \(computer)")
+                    let computerToAdd = Computer(json: JSON(computer))
+                    itemList.append(computerToAdd)
+                    Debug.logVerbose("Added computer: \(computerToAdd)")
                 }
             }
         }
         if itemList.count > 0 {
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                // Dispatch to the main queue in order to update UI
-                self.tableView.reloadData()
-            }
+            updateTableview()
         } // end dummy data.
+    }
+    
+    func updateTableview() {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            // Dispatch to the main queue in order to update UI
+            self.tableView.reloadData()
+        }
     }
 
     override func viewDidLoad() {
@@ -67,12 +73,12 @@ class MasterViewController: UITableViewController {
         }
         
         // TESTING REQUESTS:
-        let af = AFRequestController()
-        af.searchFor("6553") { (slItems) -> Void in
-            for item in slItems {
-                Debug.log("\(item)")
-            }
-        }
+//        let af = AFRequestController()
+//        af.searchFor("6553") { (slItems) -> Void in
+//            for item in slItems {
+//                Debug.log("\(item)")
+//            }
+//        }
     }
 
     override func viewWillAppear(animated: Bool) {

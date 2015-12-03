@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct KnowledgeBaseArticle: SLItem {
     
-    private let backEndStore: NSDictionary
+    private let backEndStore: JSON
     
-    init(dictionary: NSDictionary) {
-        backEndStore = dictionary
+    init(json: JSON) {
+        backEndStore = json
     }
     
     func valueForKey(key: String) -> String? {
-        return backEndStore.valueForKey(key) as? String
+        return backEndStore[key].string
     }
     
 }
