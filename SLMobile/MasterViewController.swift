@@ -15,7 +15,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     var detailViewController: DetailViewController? = nil
     
     var searchController: UISearchController!
-    var requestController = AFRequestController()
+    var requestController = SLRequestController()
     var resultsController: ResultsTableViewController!
     
     // MARK: Model
@@ -45,8 +45,11 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     }
     
     func updateTableview() {
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            // Dispatch to the main queue in order to update UI
+//        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+//            // Dispatch to the main queue in order to update UI
+//            self.tableView.reloadData()
+//        }
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
             self.tableView.reloadData()
         }
     }
@@ -156,11 +159,22 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
         guard (searchController.searchBar.text?.characters.count > 2)
             else { return }
         
+        let tableToSearch = SLKey.Table.ConfigurationItem
+        
         if let searchTerm = searchController.searchBar.text {
-            requestController.searchFor(searchTerm, completionHandler: { (jsonArray) -> Void in
+            requestController.makeRequest(searchTerm, forSLTable: tableToSearch, completionHandler: { (array) -> Void in
                 var newResults = [SLItem]()
-                for json in jsonArray {
-                    newResults.append(Computer(json: json))
+                for item in array {
+                    switch tableToSearch {
+                    case .ConfigurationItem:
+                        newResults.append(Computer(dictionary: item))
+                    case .Asset:
+                        newResults.append(Computer(dictionary: item))
+                    case .Incident:
+                        newResults.append(Incident(dictionary: item))
+                    case .KnowledgeBase:
+                        newResults.append(KnowledgeBaseArticle(dictionary: item))
+                    }
                 }
                 resultsController.filteredResults = newResults
                 resultsController.updateTableview()

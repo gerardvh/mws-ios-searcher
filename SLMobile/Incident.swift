@@ -17,6 +17,10 @@ struct Incident: SLItem {
         backEndStore = json
     }
     
+    init(dictionary: NSDictionary) {
+        self.init(json: JSON(dictionary))
+    }
+    
     func valueForKey(key: String) -> String? {
         return backEndStore[key].string
     }

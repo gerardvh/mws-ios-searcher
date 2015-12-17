@@ -17,6 +17,10 @@ struct KnowledgeBaseArticle: SLItem {
         backEndStore = json
     }
     
+    init(dictionary: NSDictionary) {
+        self.init(json: JSON(NSDictionary))
+    }
+    
     func valueForKey(key: String) -> String? {
         return backEndStore[key].string
     }

@@ -13,6 +13,8 @@ protocol SLItem {
     
     init(json: JSON)
     
+    init(dictionary: NSDictionary)
+    
     func valueForKey(key: String) -> String? // Must be implemented by conforming types
     
     func valueForKey(key: SLKey.Field) -> String?

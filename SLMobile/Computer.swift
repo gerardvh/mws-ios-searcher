@@ -53,6 +53,11 @@ struct Computer: SLItem {
         macAddress   = backEndStore[.MacAddress].string
     }
     
+    init(dictionary: NSDictionary) {
+        // Pass our NSDictionary to the JSON initializer
+        self.init(json: JSON(dictionary))
+    }
+    
     func valueForKey(key: String) -> String? {
         let value = backEndStore[key].string
         if value == "" {

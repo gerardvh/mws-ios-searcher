@@ -19,7 +19,7 @@ struct AFRequestController {
     private let defaultMaxResults: Int = 25
     private let defaultQueryModifier: SLKey.QueryModifier = .FuzzyMatch
     private let defaultQuerySeparator: SLKey.QuerySeparator = .Or
-    private let authHeader = ["Authorization": SLKey.API.authString, "Accept": "application/json"]
+    private let authHeader = ["Authorization": SLAPI.authString, "Accept": "application/json"]
     
     
     func searchFor(searchTerm: String, completionHandler handler: ([JSON]) -> Void) {
