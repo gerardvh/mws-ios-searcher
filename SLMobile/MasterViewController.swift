@@ -96,8 +96,15 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // add other segues by identifier to differentiate what kind of detail to show
         if segue.identifier == "showGenericDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
+            if let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell) {
                 let object = itemList[indexPath.row]
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! GenericDetailTableViewController
+                controller.detailItem = object
+                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftItemsSupplementBackButton = true
+            }
+            if let indexPath = resultsController.tableView.indexPathForCell(sender as! UITableViewCell) {
+                let object = resultsController.filteredResults[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! GenericDetailTableViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -127,6 +134,15 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
         let object = itemList[indexPath.row] as! Computer
         configureMasterCell(cell, forComputer: object)
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView === self.tableView {
+            return
+        } else {
+            Debug.log("Looking at the other tableview")
+            performSegueWithIdentifier("showGenericDetail", sender: tableView.cellForRowAtIndexPath(indexPath))
+        }
     }
     
     // MARK: - UISearchResultsUpdating

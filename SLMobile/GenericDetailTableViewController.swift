@@ -18,6 +18,10 @@ class GenericDetailTableViewController: UITableViewController, DetailViewControl
     func configureView() {
         fatalError("Did not implement configureView()")
     }
+    
+    override func viewDidLoad() {
+        tableView.estimatedRowHeight = 60
+    }
 
     // MARK: - Table view data source
 

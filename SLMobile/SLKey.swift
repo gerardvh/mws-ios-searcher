@@ -77,14 +77,4 @@ struct SLKey {
         case Or = "^OR"
         case And = "^"
     }
-    
-    struct API {
-        private static let SLUser = "***REMOVED***"
-        private static let SLPassword = "***REMOVED***"
-        private static let credentialData = "\(SLUser):\(SLPassword)".dataUsingEncoding(NSUTF8StringEncoding)!
-        private static let SLBase64Auth = credentialData.base64EncodedStringWithOptions([])
-        static let authString = "Basic \(SLBase64Auth)"
-    }
-    
-    
 }

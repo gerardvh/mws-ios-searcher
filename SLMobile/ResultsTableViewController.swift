@@ -50,23 +50,25 @@ class ResultsTableViewController: UITableViewController {
     }
     
     // MARK: - Navigation
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        Debug.log("Selected row at \(indexPath.row)")
-        // Then go to the detail view
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        Debug.log("Selected row at \(indexPath.row)")
+//        // Then go to the detail view
+//    }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetailFromSearch" {
-            Debug.log("Got to segue 'showDetailFromSearch'")
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = filteredResults[indexPath.row]
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! GenericDetailTableViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
-            }
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "showDetailFromSearch" {
+//            Debug.log("Got to segue 'showDetailFromSearch'")
+//            if let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell) {
+//                let object = filteredResults[indexPath.row]
+//                let navController = (segue.destinationViewController as! UINavigationController)
+//                let controller = navController.topViewController as! GenericDetailTableViewController
+//                controller.detailItem = object
+//                navController.navigationBarHidden = false
+//                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+//                controller.navigationItem.leftItemsSupplementBackButton = true
+//            }
+//        }
+//    }
    
     
 

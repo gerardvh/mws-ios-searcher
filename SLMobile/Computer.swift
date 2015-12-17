@@ -54,6 +54,11 @@ struct Computer: SLItem {
     }
     
     func valueForKey(key: String) -> String? {
-        return backEndStore[key].string
+        let value = backEndStore[key].string
+        if value == "" {
+            return nil
+        } else {
+            return value
+        }
     }
 }

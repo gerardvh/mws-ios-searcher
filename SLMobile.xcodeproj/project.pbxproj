@@ -63,6 +63,7 @@
 		A8C245531BF0FC9D000421B2 /* KnowledgeBaseArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2454A1BF0FC9D000421B2 /* KnowledgeBaseArticle.swift */; };
 		A8C245541BF0FC9D000421B2 /* KnowledgeBaseArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C2454A1BF0FC9D000421B2 /* KnowledgeBaseArticle.swift */; };
 		A8E41FE11BF68429009E0295 /* GenericDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E41FE01BF68429009E0295 /* GenericDetailTableViewController.swift */; };
+		A8E58F031C22ED9A00C0D14E /* SLAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E58F021C22ED9A00C0D14E /* SLAuth.swift */; };
 		A8FCE4211BF127220044F287 /* ComputerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */; };
 		A8FCE4221BF127220044F287 /* ComputerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */; };
 		A8FCE4241BF13BCD0044F287 /* SLRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FCE4231BF13BCD0044F287 /* SLRequestController.swift */; };
@@ -125,6 +126,7 @@
 		A8C245491BF0FC9D000421B2 /* Incident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Incident.swift; sourceTree = "<group>"; };
 		A8C2454A1BF0FC9D000421B2 /* KnowledgeBaseArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnowledgeBaseArticle.swift; sourceTree = "<group>"; };
 		A8E41FE01BF68429009E0295 /* GenericDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDetailTableViewController.swift; sourceTree = "<group>"; };
+		A8E58F021C22ED9A00C0D14E /* SLAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLAuth.swift; sourceTree = "<group>"; };
 		A8FCE4201BF127220044F287 /* ComputerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputerDetailViewController.swift; sourceTree = "<group>"; };
 		A8FCE4231BF13BCD0044F287 /* SLRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLRequestController.swift; sourceTree = "<group>"; };
 		E753AB993A2E9C7949AD3AA2 /* Pods_SLMobileTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLMobileTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				A8C245461BF0FC9D000421B2 /* SLKey.swift */,
+				A8E58F021C22ED9A00C0D14E /* SLAuth.swift */,
 				A8C245471BF0FC9D000421B2 /* Computer.swift */,
 				A8C245481BF0FC9D000421B2 /* SLItemProtocol.swift */,
 				A8C245491BF0FC9D000421B2 /* Incident.swift */,
@@ -522,6 +525,7 @@
 				A8C2454B1BF0FC9D000421B2 /* SLKey.swift in Sources */,
 				A82EFF311C0F836F00F822F4 /* Double.swift in Sources */,
 				A82EFF3D1C0F836F00F822F4 /* NSDate.swift in Sources */,
+				A8E58F031C22ED9A00C0D14E /* SLAuth.swift in Sources */,
 				A82EFF3F1C0F836F00F822F4 /* Bool.swift in Sources */,
 				A89EE71A1C0375D6002BF102 /* AFRequestController.swift in Sources */,
 				A8C245411BF0FC55000421B2 /* Debug.swift in Sources */,
