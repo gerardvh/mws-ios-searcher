@@ -10,14 +10,29 @@ import UIKit
 
 class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate {
 //    MARK: - Properties
-//    private var session: NSURLSession?
+    /// Optional dataTask. This is cancelled whenever we start a new dataTask.
     private var dataTask: NSURLSessionDataTask?
+    
+//    MARK: - Singleton NSURLSession
+    /// Singleton NSURLSession
     static let singleSession: NSURLSession = {
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         config.HTTPAdditionalHeaders = ["Authorization": SLAPI.authString, "Accept": "application/json"]
         return NSURLSession(configuration: config)
     }()
     
+//    MARK: - Published API
+    /**
+     Main public API for making ServiceLink requests
+     
+     - parameter searchTerm:       Text to use for searching accross the provided fields in ServiceLink.
+     - parameter table:            Which ServiceLink table to search, defaults to SLKey.Table.ConfigurationItem
+     - parameter fields:           Fields to search using the provided `searchTerm`. Defaults to an `OR` search with fuzzy matching (`LIKE`). Default fields are .SerialNumber, .AssetTag, .AssignedToFullname, .AssignedToUsername.
+     - parameter limit:            Max number of results to return from ServiceLink. It may improve performance to reduce this number. Defaults to 100.
+     - parameter displayOnly:      Whether or not to show ServiceLink `sys_id`s, or just the human readable format. Defaults to `true`, which is human readable.
+     - parameter excludeReference: Whether or not to return ServiceLink API addresses for references, such as Location or User. Defaults to `true`, which omits these links.
+     - parameter handler:          Completion handler to do something with the array of NSDictionaries returned from JSON serialization. The returned array will be nil if there is an error.
+     */
     func makeRequest(
         searchTerm: String,
         forSLTable table: SLKey.Table = .ConfigurationItem,
@@ -25,7 +40,7 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
         resultLimit limit: Int = 100,
         displayOnly: Bool = true,
         excludeReference: Bool = true,
-        completionHandler handler: ([NSDictionary]) -> Void)
+        completionHandler handler: ([NSDictionary]?) -> Void)
             -> Void
     {
         // Stop the running data task if we enter this method while there is still a data task pending
@@ -53,6 +68,7 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
                 jsonResponse = jsonData as? Dictionary<String, AnyObject>
                 else {
                     Debug.log("Unable to parse JSON from data: \(dataUnwrapped)")
+                    handler(nil)
                     return
                 }
             // Results from ServiceLink are arrays of dictionaries, here we know we have a result from SL
@@ -62,7 +78,7 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
             } else if let jsonError = jsonResponse["error"] as? NSDictionary {
                 // When a query doesn't match anything, ServiceLink sends back an `error` dictionary
                 Debug.log("SL Error: \(jsonError["message"])")
-                handler([NSDictionary]())
+                handler(nil)
             } else {
                 Debug.log("Unknown error in Service Link response")
             }
@@ -70,6 +86,10 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
         self.dataTask?.resume()
     }
     
+//    MARK: - Helper Functions
+    /**
+     Internal function for setting up the NSURLRequest.
+     */
     private func configureDefaultRequest(
         searchTerm: String,
         table: SLKey.Table,
@@ -84,6 +104,9 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
         return configureRequest(searchTerm, queryItems: queryItems, table: table)
     }
     
+    /**
+     Internal function for setting up the NSURLRequest.
+     */
     private func configureRequest(
         searchTerm: String,
         queryItems: [NSURLQueryItem],
@@ -95,6 +118,16 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
         return NSURLRequest(URL: urlComponents.URL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 10.0)
     }
     
+    /**
+     Internal function for creating query strings appropriate for use with the ServiceLink API.
+     
+     - parameter searchTerm: Text to search for accross provided `fields`.
+     - parameter fields:     Fields in which to search for the `searchTerm`.
+     - parameter sep:        Switch whether this is an `OR` or `AND` search across the `fields`.
+     - parameter mod:        Switch whether this is a `LIKE` search or a `=` search for each field.
+     
+     - returns: String appropriate for use in the ServiceLink API as the value for key `sysparm_query`.
+     */
     private func getQueryString(
         searchTerm: String,
         fieldsToQuery fields: [SLKey.Field],
@@ -117,6 +150,16 @@ class SLRequestController: NSObject, NSURLSessionDelegate, NSURLSessionDataDeleg
         return queryValues.joinWithSeparator(sep.rawValue)
     }
     
+    /**
+     Internal function for creating an array of `NSURLQueryItem`s which is then used by `configureRequest(...)` as the `queryItems` property of the `NSURLComponents` class to create the full query string for submitting to the ServiceLink API.
+     
+     - parameter query:            ServiceLink formatted query string, like the one provided by `getQueryString(...)`.
+     - parameter limit:            Max number of results to return from ServiceLink.
+     - parameter displayOnly:      Whether or not to show ServiceLink `sys_id`s, or just the human readable format. Defaults to `true`, which is human readable.
+     - parameter excludeReference: Whether or not to return ServiceLink API addresses for references, such as Location or User. Defaults to `true`, which omits these links.
+     
+     - returns: Array of `NSURLQueryItem`s appropriate for use with `configureRequest(...)`.
+     */
     private func getQueryItems(
         query: String,
         limit: Int,

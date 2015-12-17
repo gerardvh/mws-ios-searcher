@@ -163,8 +163,10 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
         
         if let searchTerm = searchController.searchBar.text {
             requestController.makeRequest(searchTerm, forSLTable: tableToSearch, completionHandler: { (array) -> Void in
+                guard let result = array
+                    else { return } // Return early if we can't unwrap the result from ServiceLink
                 var newResults = [SLItem]()
-                for item in array {
+                for item in result {
                     switch tableToSearch {
                     case .ConfigurationItem:
                         newResults.append(Computer(dictionary: item))
