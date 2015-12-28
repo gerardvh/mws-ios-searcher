@@ -47,7 +47,6 @@
 		A89DA5DA1BED3345006DB990 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A89DA5D81BED3345006DB990 /* LaunchScreen.storyboard */; };
 		A89EE7131C02A35D002BF102 /* ComputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89EE7121C02A35D002BF102 /* ComputerTests.swift */; };
 		A89EE71A1C0375D6002BF102 /* AFRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89EE7191C0375D6002BF102 /* AFRequestController.swift */; };
-		A89EE7201C038279002BF102 /* AFRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89EE71F1C038279002BF102 /* AFRequestTests.swift */; };
 		A8C2453D1BF0FBF8000421B2 /* sl_test_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8C2453C1BF0FBF8000421B2 /* sl_test_data.plist */; };
 		A8C2453E1BF0FBF8000421B2 /* sl_test_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8C2453C1BF0FBF8000421B2 /* sl_test_data.plist */; };
 		A8C245411BF0FC55000421B2 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C245401BF0FC55000421B2 /* Debug.swift */; };
@@ -117,7 +116,6 @@
 		A89EE7141C02A51E002BF102 /* SLMobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLMobile-Bridging-Header.h"; sourceTree = "<group>"; };
 		A89EE7151C02A51E002BF102 /* SLMobileTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLMobileTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		A89EE7191C0375D6002BF102 /* AFRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFRequestController.swift; sourceTree = "<group>"; };
-		A89EE71F1C038279002BF102 /* AFRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFRequestTests.swift; sourceTree = "<group>"; };
 		A8C2453C1BF0FBF8000421B2 /* sl_test_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sl_test_data.plist; sourceTree = "<group>"; };
 		A8C245401BF0FC55000421B2 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		A8C245461BF0FC9D000421B2 /* SLKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLKey.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 		A89DA5E31BED3345006DB990 /* SLMobileTests */ = {
 			isa = PBXGroup;
 			children = (
-				A89EE71F1C038279002BF102 /* AFRequestTests.swift */,
 				A89EE7121C02A35D002BF102 /* ComputerTests.swift */,
 				A89DA5E61BED3345006DB990 /* Info.plist */,
 				A89EE7141C02A51E002BF102 /* SLMobile-Bridging-Header.h */,
@@ -564,7 +561,6 @@
 				A82EFF301C0F836F00F822F4 /* Dictionary.swift in Sources */,
 				A8FCE4251BF13BCD0044F287 /* SLRequestController.swift in Sources */,
 				A82EFF361C0F836F00F822F4 /* Int.swift in Sources */,
-				A89EE7201C038279002BF102 /* AFRequestTests.swift in Sources */,
 				A8C2454C1BF0FC9D000421B2 /* SLKey.swift in Sources */,
 				A82EFF401C0F836F00F822F4 /* Bool.swift in Sources */,
 			);
