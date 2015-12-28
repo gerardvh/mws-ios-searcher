@@ -132,7 +132,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ComputerCell.ID, forIndexPath: indexPath)
         
-        // Use a switch statement with 'case let' to pattern match and get the type of item
+        // TODO: Use a switch statement with 'case let' to pattern match and get the type of item
 
         let object = itemList[indexPath.row] as! Computer
         configureMasterCell(cell, forComputer: object)
